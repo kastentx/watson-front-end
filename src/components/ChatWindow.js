@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import Prompt from './Prompt';
 import TextArea from './TextArea';
+import Message from './Message';
+
+const boxStyle = {
+  border: '2px solid black',
+  backgroundColor: 'grey',
+  width: '98%',
+  margin: '0 auto 0 auto'
+}
 
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: '',
+      messages: [{user: 'watson', message: 'Welcome to fake watson message!'},
+                 {user: 'human', message: 'test message'},
+                 {user: 'human', message: 'test message2'}]
     }
   }
 
@@ -20,16 +31,17 @@ class ChatWindow extends Component {
     e.preventDefault();
   }
 
-  render () {
-    const boxStyle = {
-      border: '2px solid black',
-      backgroundColor: 'grey'
-    }
+  renderMessages = () => {
+    const messages = this.state.messages.slice();
+    return messages.map((message, i) => <Message key={i} user={message.user} text={message.message} />)
+  }
+
+  render() {
 
     return (
       <div style={boxStyle}>
         <TextArea>
-          test text
+          {this.renderMessages()}
         </TextArea>
         <Prompt
           value={this.state.input}

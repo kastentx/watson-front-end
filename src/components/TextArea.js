@@ -2,9 +2,10 @@ import React from 'react'
 
 const borderStyle = {
   border: '2px solid white',
+  borderRadius: '5px',
   backgroundColor: '#d0fffe',
   width: '80%',
-  minHeight: '200px',
+  minHeight: '600px',
   margin: '5% auto'
 }
 
